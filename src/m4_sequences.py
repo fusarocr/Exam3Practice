@@ -419,8 +419,11 @@ def practice_problem4d(sequence):
     #    TIME ESTIMATE:   15 minutes.
     ####################################################################
     sum = 0
-    for k in range(len(sequence)):
-        if 
+    for k in range(len(sequence)-1):
+        if is_prime(sequence[k + 1]) == True and is_prime(sequence[k]) == True:
+            if sequence[k+1] != sequence[k]:
+                sum = sum + sequence[k]
+    return sum
 
 
 
