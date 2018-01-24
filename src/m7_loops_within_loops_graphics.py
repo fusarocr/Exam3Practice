@@ -5,8 +5,8 @@ This problem provides practice at:
   ***  LOOPS WITHIN LOOPS in 2D GRAPHICS problems.  ***
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Christopher Fusaro.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ########################################################################
 # Students:
@@ -89,7 +89,7 @@ def hourglass(window, n, point, radius, color):
     a color that rosegraphics understands.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #       We provided some tests for you (above).
     # ------------------------------------------------------------------
     ####################################################################
@@ -101,6 +101,47 @@ def hourglass(window, n, point, radius, color):
     #    DIFFICULTY:      8
     #    TIME ESTIMATE:  25 minutes (warning: this problem is challenging)
     # ------------------------------------------------------------------
+    circle = rg.Circle(point, radius)
+    x0 = circle.center.x
+
+    x_up = circle.center.x
+    x_low = circle.center.x
+
+    y_up = circle.center.y
+    y_low = circle.center.y
+
+    for k in range(n):
+        x_up = x0 - radius * k
+        x_low = x0 - radius * k
+
+        for j in range(k+1):
+            circle_up = rg.Circle(rg.Point(x_up, y_up), radius)
+            circle_up.fill_color = color
+            circle_up.attach_to(window)
+
+            line_up = rg.Line(rg.Point(x_up - radius, y_up), rg.Point(
+                x_up + radius, y_up))
+            line_up.attach_to(window)
+
+            circle_low = rg.Circle(rg.Point(x_low, y_low), radius)
+            circle_low.fill_color = color
+            circle_low.attach_to(window)
+
+            line_low = rg.Line(rg.Point(x_low - radius, y_low), rg.Point(
+                x_low + radius,
+                                                             y_low))
+            line_low.attach_to(window)
+
+
+            x_low = x_low + 2*radius
+            x_up = x_up + 2*radius
+
+        y_up = y_up - radius*1.73205
+        y_low = y_low + radius*1.73205
+
+
+    window.render()
+
 
 
 def run_test_many_hourglasses():
